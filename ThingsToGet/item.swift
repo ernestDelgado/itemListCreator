@@ -12,6 +12,8 @@ import UIKit
 class ListItem {
     var image: UIImage!
     var itemName: String!
+    var cases: Int = 0
+    var singles: Int = 0
     
     init(image: UIImage, item: String){
         self.image = image

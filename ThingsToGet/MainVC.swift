@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainVC.swift
 //  ThingsToGet
 //
 //  Created by Ernest Delgado on 8/21/17.
@@ -8,41 +8,43 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var items = [ListItem]()
+    var filteredItems = [ListItem]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.delegate = self
+        collectionView.dataSource = self
         fillList()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.allowsSelection = false;
         
         
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "itemListCell") as? itemListCell {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemViewCell", for: indexPath) as? itemViewCell {
             let item = items[indexPath.row]
             cell.updateUI(item: item)
             return cell
-        }else{
-            return UITableViewCell()
+        } else {
+            return UICollectionViewCell()
         }
-        
-        
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+
+    
     
     func fillList(){
         var item = ListItem(image: #imageLiteral(resourceName: "aquafina"), item: "Aquafina")
