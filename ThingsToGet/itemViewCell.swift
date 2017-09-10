@@ -14,7 +14,7 @@ class itemViewCell: UICollectionViewCell {
     
     func updateUI(item: ListItem){
         itemImage.image = item.image
-        itemName.text = item.itemName
+        itemName.text = item.itemName.capitalized
     }
     
 }

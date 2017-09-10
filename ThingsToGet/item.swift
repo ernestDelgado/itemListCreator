@@ -14,6 +14,7 @@ class ListItem {
     var itemName: String!
     var cases: Int = 0
     var singles: Int = 0
+    var comment: String = ""
     
     init(image: UIImage, item: String){
         self.image = image
